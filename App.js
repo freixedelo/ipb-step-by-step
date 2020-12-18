@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Homescreen from "./screens/Home.js";
 import Second from "./screens/Second.js";
+import Third from "./screens/Third.js";
 
 const Stack = createStackNavigator();
 export default class App extends Component {
@@ -17,6 +18,7 @@ export default class App extends Component {
             options={{ headerShown: false, gestureEnabled: false }}
           />
           <Stack.Screen name="Second" component={Second} />
+          <Stack.Screen name="Third" component={Third} />
         </Stack.Navigator>
       </NavigationContainer>
     );

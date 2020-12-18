@@ -9,6 +9,7 @@ import {
   TextInput,
   ActivityIndicator,
   Image,
+  TouchableHighlight,
 } from "react-native";
 import { HeaderAula } from "./components/HeaderAula.js";
 
@@ -79,7 +80,30 @@ export default class Second extends Component {
           />
 
           <Text>Aula de PAM! #2</Text>
-
+          <View>
+            <FlatList
+              data={this.state.listOfPeople}
+              keyExtractor={(item) => item.index}
+              renderItem={({ item }) => {
+                console.log(item);
+                return (
+                  <TouchableHighlight
+                    onPress={() =>
+                      this.props.navigation.navigate("Third", {
+                        homeworld: item.homeworld,
+                      })
+                    }
+                    style={{ backgroundColor: "#fff123" }}
+                  >
+                    <View>
+                      <Text>{item.name}</Text>
+                      <Text style={{ fontSize: 10 }}>{item.gender}</Text>
+                    </View>
+                  </TouchableHighlight>
+                );
+              }}
+            />
+          </View>
           <TextInput
             style={{
               color: "#135123",
@@ -104,21 +128,6 @@ export default class Second extends Component {
             title={"mudar cor"}
             disabled={this.state.isDisable}
           />
-          <View>
-            <FlatList
-              data={this.state.listOfPeople}
-              keyExtractor={(item) => item.index}
-              renderItem={(item) => {
-                console.log(item);
-                return (
-                  <>
-                    <Text>{item.name}</Text>
-                    <Text style={{ fontSize: 10 }}>{item.gender}</Text>
-                  </>
-                );
-              }}
-            />
-          </View>
         </View>
       );
     }
